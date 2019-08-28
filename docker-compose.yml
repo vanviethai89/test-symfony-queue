@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php-fpm/Dockerfile
+    volumes:
+      - ./docker/php-fpm/php.ini:/etc/php/7.2/fpm/conf.d/40-custom.ini
+      - .:/var/www
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/nginx.cnf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8089:8080
+
+  redis:
+    image: redis:5.0
+    ports:
+      - 6379:6379
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: symfony
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - .docker-tmp/mysql/data:/var/lib/mysql
+    ports:
+      - 33060:3306
