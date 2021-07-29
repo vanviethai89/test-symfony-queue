@@ -52,6 +52,4 @@ class NewUserWelcomeEmailMessage implements AsyncMessageInterface
     {
         return $this->lastName;
     }
-
-
 }

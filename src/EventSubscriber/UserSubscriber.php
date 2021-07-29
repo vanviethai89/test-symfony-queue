@@ -4,7 +4,6 @@ namespace App\EventSubscriber;
 
 use App\Event\UserCreatedEvent;
 use App\Message\NewUserWelcomeEmailMessage;
-use App\Message\WhatEverName;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
